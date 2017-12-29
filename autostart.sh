@@ -24,7 +24,6 @@ elif test $1 = ETN;
 then
 	if test $3 = easy;
 		screen torify ./cpuminer -a cryptonight -o stratum+tcp://etn.easyhash.io:3630 -u etnkKPTknoHRSGXHakPfSSaDxaBnbAZ51gbdjsQ7eBN3Ru4AZVd49RLMFJVZDbodUTA7y9cmityG6EBszT1Dr4VR7RK7a71SMj -p 4
-	fi
 	else
 		screen torify ./cpuminer -a cryptonight -o stratum+tcp://asiapool.electroneum.com:3333 -u etnkKPTknoHRSGXHakPfSSaDxaBnbAZ51gbdjsQ7eBN3Ru4AZVd49RLMFJVZDbodUTA7y9cmityG6EBszT1Dr4VR7RK7a71SMj -p 4 -t $2
 	fi
