@@ -24,22 +24,26 @@ Algorithms
  * ✓ __scrypt:N__
  * ✓ __scrypt-jane:N__
  * ✓ __sha256d__ (Bitcoin, Freicoin, Peercoin/PPCoin, Terracoin, ...)
+ * ✓ __allium__ (Garlicoin, Tuxcoin)
  * ✓ __axiom__ (Axiom Shabal-256 based MemoHash)
  * ✓ __bastion__ (Joincoin [J])
  * ✓ __bitcore__ Permuted serie of 10 algos (BitCore)
  * ✓ __blake__ (Saffron [SFR] Blake-256)
  * ✓ __blake2s__ (NevaCoin Blake2-S 256)
+ * ✓ __blake2b__ (Not SIA one)
  * ✓ __bmw__ (Midnight [MDT] BMW-256)
  * ✓ __cryptonight__ (Bytecoin [BCN], Monero [XMR])
  * ✓ __cryptonight-light__ (Aeon)
  * ✓ __decred__ (Blake256-14 [DCR])
  * ✓ __dmd-gr__ (Diamond-Groestl)
  * ✓ __fresh__ (FreshCoin)
+ * ✓ __geek__ (GeekCash [GEEK])
  * ✓ __groestl__ (Groestlcoin)
  * ✓ __jha__ (JackpotCoin, SweepStake)
  * ✓ __lbry__ (LBRY Credits [LBC])
  * ✓ __lyra2RE__ (Cryptocoin)
- * ✓ __lyra2REv2__ (VertCoin [VTC])
+ * ✓ __lyra2REv2__
+ * ✓ __lyra2REv3__ (VertCoin [VTC])
  * ✓ __myr-gr__ Myriad-Groestl (MyriadCoin [MYR])
  * ✓ __neoscrypt__ (Feathercoin)
  * ✓ __nist5__ (MistCoin [MIC], TalkCoin [TAC], ...)
@@ -59,17 +63,24 @@ Algorithms
  * ✓ __xevan__ x17 x 2 on bigger header (BitSend [BSD])
  * ✓ __x11evo__ (Revolver [XRE])
  * ✓ __x11__ (Darkcoin [DRK], Hirocoin, Limecoin, ...)
+ * ✓ __x12__ (GalaxyCash [GCH])
  * ✓ __x13__ (Sherlockcoin, [ACE], [B2B], [GRC], [XHC], ...)
  * ✓ __x14__ (X14, Webcoin [WEB])
  * ✓ __x15__ (RadianceCoin [RCE])
+ * ✓ __x16r__
+ * ✓ __x16rv2__ (Ravencoin [RVN], Trivechain [TRVC])
+ * ✓ __x16s__ (Pigeoncoin [PGN])
  * ✓ __x17__ (Verge [XVG])
+ * ✓ __x20r__
  * ✓ __yescrypt__ (GlobalBoostY [BSTY], Unitus [UIS], MyriadCoin [MYR])
  * ✓ __zr5__ (Ziftrcoin [ZRC])
 
 #### Implemented, but untested
  * ? hefty1 (Heavycoin)
  * ? keccak (Maxcoin  HelixCoin, CryptoMeth, Galleon, 365coin, Slothcoin, BitcointalkCoin)
+ * ? keccakc (Creativecoin)
  * ? luffa (Joincoin, Doomcoin)
+ * ? rainforest
  * ? shavite3 (INKcoin)
 
 #### Planned support for
@@ -107,12 +118,20 @@ _OR_
 #### Note for Debian/Ubuntu users:
 
 ```
- apt-get install automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev make g++
+ apt-get install automake autoconf pkg-config libcurl4-openssl-dev libjansson-dev libssl-dev libgmp-dev zlib1g-dev make g++
+```
+
+#### Note for OS X users:
+
+```
+ brew install openssl curl
+ ./build.sh # if curl was installed to /usr/local/opt, else update build.sh paths in darwin section
 ```
 
 #### Note for pi64 users:
 
 ```
+ ./autogen.sh
  ./configure --disable-assembly CFLAGS="-Ofast -march=native" --with-crypto --with-curl
 ```
 
@@ -144,7 +163,7 @@ _OR_
 #### Architecture-specific notes:
  * ARM:
    * No runtime CPU detection. The miner can take advantage of some instructions specific to ARMv5E and later processors, but the decision whether to use them is made at compile time, based on compiler-defined macros.
-   * To use NEON instructions, add `"-mfpu=neon"` to CFLAGS.
+   * To use NEON instructions, add `-mfpu=neon` to CFLAGS.
  * x86:
    * The miner checks for SSE2 instructions support at runtime, and uses them if they are available.
  * x86-64:	
@@ -157,11 +176,11 @@ _OR_
 
 Usage instructions
 ==================
-Run "cpuminer --help" to see options.
+Run `cpuminer --help` to see options.
 
 ### Connecting through a proxy
 
-Use the --proxy option.
+Use the `--proxy` option.
 
 To use a SOCKS proxy, add a socks4:// or socks5:// prefix to the proxy host  
 Protocols socks4a and socks5h, allowing remote name resolving, are also available since libcurl 7.18.0.
@@ -175,7 +194,6 @@ Donations for the work done in this fork are accepted :
 
 Tanguy Pruvot :
 * BTC: `1FhDPLPpw18X4srecguG3MxJYe4a1JsZnd`
-* ZRC: `ZX6LmrCwphNgitxvDnf8TX6Tsegfxpeozx`
 
 Lucas Jones :
 * MRO: `472haywQKoxFzf7asaQ4XKBc2foAY4ezk8HiN63ifW4iAbJiLnfmJfhHSR9XmVKw2WYPnszJV9MEHj9Z5WMK9VCNHaGLDmJ`
